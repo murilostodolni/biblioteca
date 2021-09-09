@@ -23,8 +23,11 @@ class Livro(Resource):
         autor = request.json['autor']
         unidades = request.json['unidades']
 
-        cursor.execute("INSERT INTO livros (nome, autor, edicao, unidades) VALUES (%s, %s, %s, %s);", (nome, autor, edicao, unidades))
-        connection.commit()
+        try:
+            cursor.execute("INSERT INTO livros (nome, autor, edicao, unidades) VALUES (%s, %s, %s, %s);", (nome, autor, edicao, unidades))
+            connection.commit()
+        except  Exception as err:
+            return "ERRO: {0}".format(err), 404
         return "OK"
 
 class Usuario(Resource):
@@ -42,8 +45,11 @@ class Usuario(Resource):
         nome = request.json['nome']
         matricula = request.json['matricula']
 
-        cursor.execute("INSERT INTO usuarios (cpf, nome, matricula) VALUES (%s, %s, %s);", (cpf, nome, matricula))
-        connection.commit()
+        try:
+            cursor.execute("INSERT INTO usuarios (cpf, nome, matricula) VALUES (%s, %s, %s);", (cpf, nome, matricula))
+            connection.commit()
+        except  Exception as err:
+            return "ERRO: {0}".format(err), 404
         return "OK"
 
 class Emprestimo(Resource):
@@ -62,8 +68,11 @@ class Emprestimo(Resource):
         dataEmprestimo = request.json['data_emprestimo']
         dataVencimento = request.json['data_vencimento']
 
-        cursor.execute("INSERT INTO emprestimo (cpf_usuario, id_livro, data_emprestimo, data_vencimento) VALUES (%s, %s, %s, %s);", (cpfUsuario, idLivro, dataEmprestimo, dataVencimento))
-        connection.commit()
+        try:
+            cursor.execute("INSERT INTO emprestimo (cpf_usuario, id_livro, data_emprestimo, data_vencimento) VALUES (%s, %s, %s, %s);", (cpfUsuario, idLivro, dataEmprestimo, dataVencimento))
+            connection.commit()
+        except  Exception as err:
+            return "ERRO: {0}".format(err), 404
         return "OK"
 
 api.add_resource(Emprestimo, '/emprestimo')
