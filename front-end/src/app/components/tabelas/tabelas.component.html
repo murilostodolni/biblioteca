@@ -1,0 +1,38 @@
+<nb-layout>
+  <nb-layout-column>
+    <nb-card>
+      <nb-card-body>
+
+        <nb-tabset (changeTab) = "changeTab()">
+          <!--Usuários-->
+          <nb-tab tabTitle="Usuários" tabIcon="clipboard-outline" responsive>
+              <nb-card-body class="example-items-col">
+                  <ng2-smart-table class="order-table" [settings]="settings[0]" [source]="sources[0].data"
+                  (createConfirm)="onCreateConfirm($event, 'usuarios')">
+                  </ng2-smart-table>
+              </nb-card-body>
+          </nb-tab>
+          <!--Livros-->
+          <nb-tab tabTitle="Livros" tabIcon="clipboard-outline" responsive>
+            <nb-card-body class="example-items-col">
+                <ng2-smart-table class="order-table" [settings]="settings[1]" [source]="sources[1].data"
+                (createConfirm)="onCreateConfirm($event, 'livros')">
+                </ng2-smart-table>
+            </nb-card-body>
+        </nb-tab>
+
+          <!--Empréstimos-->
+          <nb-tab tabTitle="Empréstimos" tabIcon="clipboard-outline" responsive>
+            <nb-card-body class="example-items-col">
+                <ng2-smart-table class="order-table" [settings]="settings[2]" [source]="sources[2].data"
+                (createConfirm)="onCreateConfirm($event, 'emprestimos')">
+                </ng2-smart-table>
+            </nb-card-body>
+        </nb-tab>
+
+        </nb-tabset>
+
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>

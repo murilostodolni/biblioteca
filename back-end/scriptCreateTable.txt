@@ -1,0 +1,11 @@
+# Create a table
+cursor.execute("CREATE TABLE livros (id serial PRIMARY KEY, nome VARCHAR(64), autor VARCHAR(64), edicao INTEGER, unidades INTEGER);")
+cursor.execute("CREATE TABLE usuarios (cpf VARCHAR(11) PRIMARY KEY, nome VARCHAR(64), matricula VARCHAR(64));")
+cursor.execute("CREATE TABLE emprestimo (" +
+                "id serial PRIMARY KEY, " +
+                "cpf_usuario VARCHAR(11), " +
+                "CONSTRAINT fk_cpf_usuario FOREIGN KEY (cpf_usuario) REFERENCES usuarios (cpf), " +
+                "id_livro INTEGER, "+
+                "CONSTRAINT fk_id_livro FOREIGN KEY (id_livro) REFERENCES livros (id), " +
+                "data_emprestimo date, " +
+                "data_vencimento date);")
