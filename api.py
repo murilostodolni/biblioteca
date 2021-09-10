@@ -2,9 +2,12 @@ from flask import Flask, request, jsonify
 from flask_restful import Resource, Api
 from db import connection
 import psycopg2
+from flask_cors import CORS
 
 app = Flask(__name__)
 api = Api(app)
+
+CORS(app)
 
 class Livro(Resource):
     def get(self):
@@ -12,9 +15,7 @@ class Livro(Resource):
         conn.execute("SELECT * FROM livros")
         query = conn.fetchall()
         
-        return jsonify(
-            livros = query
-            )
+        return jsonify(query)
 
     def post(self):
         cursor = connection.cursor()
@@ -35,9 +36,7 @@ class Usuario(Resource):
         conn = connection.cursor()
         conn.execute("SELECT * FROM usuarios")
         query = conn.fetchall()
-        return jsonify(
-            usuarios = query
-        )
+        return jsonify(query)
 
     def post(self):
         cursor = connection.cursor()
@@ -57,9 +56,7 @@ class Emprestimo(Resource):
         conn = connection.cursor()
         conn.execute("SELECT * FROM emprestimo")
         query = conn.fetchall()
-        return jsonify(
-            emprestimo = query
-        )
+        return jsonify(query)
 
     def post(self):
         cursor = connection.cursor()
